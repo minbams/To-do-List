@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="box">
+            <h2>To Do List</h2>
+            <input type="text" placeholder="Write down here..." id="inputbox">
+            <ul id="list"></ul>
+        </div>
+    </div>
+    <script>
+        let inputbox = document.getElementById('inputbox');
+        let list = document.getElementById('list');
+
+        //add task in to do list feature
+        inputbox.addEventListener("keyup", function(event){
+            if (event.key == "Enter") {
+                addItem(this.value)
+                this.value = ""
+            }
+        })
+
+        let addItem = (inputbox) => {
+            let listItem = document.createElement("li");
+            listItem.innerHTML = `${inputbox}<i></i>`
+                
+                //done task which in to do list feature
+                listItem.addEventListener("click", function(event){
+                    this.classList.toggle('done');
+                })
+
+                //remove task in to do list feature
+                listItem.querySelector("i").addEventListener("click", function(){
+                    listItem.remove();
+                })
+
+                //add new task to buttom of to do list
+                list.appendChild(listItem);
+        }
+    </script>
+</body>
+</html>
